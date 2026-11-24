@@ -1,1 +1,72 @@
-/home/user/Doubao/chats/38455888271660034/_restore/notes.html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英语学习笔记 · 进击的小超超</title>
+<meta name="description" content="《新概念英语》第一册学习笔记：按课次整理单词、语法句型与课文例句。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f6f63'/%3E%3Ctext x='16' y='22' font-size='17' font-family='sans-serif' fill='%23ffffff' text-anchor='middle'%3Ez%3C/text%3E%3C/svg%3E">
+<style>
+:root{--bg:#f6f7f5;--surface:#fff;--ink:#20262e;--muted:#5b6570;--line:#e3e7e1;--accent:#1f6f63;--accent-soft:#e7f1ee;--amber:#9a5b16;--amber-soft:#f7efe2;--radius:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,"Segoe UI","Microsoft YaHei","PingFang SC",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;font-size:15px}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:920px;margin:0 auto;padding:0 20px}
+.topbar{position:sticky;top:0;z-index:10;border-bottom:1px solid var(--line);background:var(--surface)}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:16px 20px;max-width:920px;margin:0 auto}
+.brand{font-weight:700;letter-spacing:.02em;color:var(--ink)}.brand span{color:var(--accent)}
+.nav{display:flex;gap:18px;flex-wrap:wrap}.nav a{color:var(--muted);font-size:14px}.nav a:hover{color:var(--accent);text-decoration:none}
+section{padding:36px 0}.section-title{font-size:1.25rem;margin-bottom:6px}.section-desc{color:var(--muted);font-size:14px;margin-bottom:22px}
+.notes-index{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}.notes-index a{display:inline-block;padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--muted);font-size:13px}.notes-index a:hover{color:var(--accent);border-color:var(--accent);text-decoration:none}
+.note-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:0 24px;margin-bottom:16px;scroll-margin-top:24px}.note-card:last-child{margin-bottom:0}
+.note-summary{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding:18px 0;cursor:pointer;list-style:none}.note-summary::-webkit-details-marker{display:none}.note-summary h3{font-size:1.02rem;flex:1}
+.lesson-tag{flex:none;font-size:12px;font-weight:600;letter-spacing:.03em;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:3px 9px;font-variant-numeric:tabular-nums}
+.note-summary .arrow{flex:none;align-self:center;width:9px;height:9px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg);transition:transform .15s ease}
+details[open] .note-summary .arrow{transform:rotate(225deg)}
+details.note-card[open]>.note-block:last-child{padding-bottom:22px}
+.note-block{margin-bottom:14px}.note-block:last-child{margin-bottom:0}.note-block h4{font-size:13px;color:var(--muted);font-weight:600;margin-bottom:8px;letter-spacing:.02em}
+.note-block ul{list-style:none;display:grid;gap:7px}.note-block li{position:relative;padding-left:16px}.note-block li::before{content:"";position:absolute;left:0;top:11px;width:5px;height:5px;border-radius:50%;background:var(--line)}
+.word{color:var(--ink)}.word .pos{color:var(--muted);font-size:13px}
+.ex{display:grid;gap:4px}.ex .en{font-weight:500}.ex .zh{color:var(--muted);font-size:14px}
+.note-tip{background:var(--accent-soft);border-radius:10px;padding:10px 14px;color:var(--ink);font-size:14px}.note-tip.amber{background:var(--amber-soft)}
+.wrong{color:#a23b3b}.right{color:var(--accent)}
+.cloud-empty{color:var(--muted);font-size:14px;padding:8px 2px}.cloud-meta{font-size:12px;color:var(--muted);margin-top:6px}
+.add-card{background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius);margin-bottom:16px}.add-card .note-summary{cursor:pointer}
+.add-form{padding:0 24px 20px;display:grid;gap:12px}.add-form label{font-size:13px;color:var(--muted);display:block;margin-bottom:4px}
+.add-form input[type=text],.add-form input[type=password],.add-form textarea{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;color:var(--ink);background:#fff}
+.add-form textarea{min-height:90px;resize:vertical;line-height:1.7}.add-form .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:520px){.add-form .row2{grid-template-columns:1fr}}
+.add-form button{justify-self:start;padding:9px 20px;border:0;border-radius:10px;background:var(--accent);color:#fff;font:inherit;cursor:pointer}.add-form button:disabled{opacity:.6;cursor:default}
+.form-msg{font-size:13px;min-height:18px}.form-msg.ok{color:var(--accent)}.form-msg.err{color:#a23b3b}
+footer{border-top:1px solid var(--line);margin-top:32px;padding:28px 0 40px;color:var(--muted);font-size:13px}.footer-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}footer a{color:var(--muted)}footer a:hover{color:var(--accent)}
+@media(max-width:520px){section{padding:28px 0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner"><div class="brand">进击的小超超<span> · 学习笔记</span></div><nav class="nav"><a href="index.html">返回主页</a></nav></div></header>
+<main class="container"><section id="notes">
+<h2 class="section-title">英语学习笔记</h2>
+<p class="section-desc">《新概念英语》第一册静态笔记覆盖 Lesson 14–49，按课次整理单词、语法句型与课文例句，点击课次标题展开详情；页面下方可在线补充新笔记。</p>
+<div class="notes-index">
+<a href="#l14">Lesson 14</a><a href="#l19">Lesson 19</a><a href="#l2122">Lesson 21–22</a><a href="#l28">Lesson 28</a><a href="#l29">Lesson 29</a><a href="#l31">Lesson 31</a><a href="#l35">Lesson 35</a><a href="#l37">Lesson 37</a><a href="#l39">Lesson 39</a><a href="#l41">Lesson 41</a><a href="#l43">Lesson 43</a><a href="#l45">Lesson 45</a><a href="#l4046">Lesson 40 &amp; 46</a><a href="#l47">Lesson 47</a><a href="#l49">Lesson 49</a><a href="#lsum">句型总结</a>
+</div>
+<details class="note-card add-card" id="add-note"><summary class="note-summary"><span class="lesson-tag" style="color:var(--amber);background:var(--amber-soft)">＋</span><h3>添加一条新笔记</h3><span class="arrow" aria-hidden="true"></span></summary>
+<div class="add-form"><div class="row2"><div><label for="f-lesson">课次（可选，如 Lesson 52）</label><input type="text" id="f-lesson" placeholder="Lesson 52"></div><div><label for="f-title">标题</label><input type="text" id="f-title" placeholder="如：现在进行时例句"></div></div><div><label for="f-content">正文（一行一条，换行可保留）</label><textarea id="f-content" placeholder="单词 / 短语 / 例句，逐条写"></textarea></div><div><label for="f-token">写入口令</label><input type="password" id="f-token" placeholder="你设置的写入口令"></div><button type="button" id="f-submit">保存并发布</button><div class="form-msg" id="f-msg"></div></div>
+</details>
+<!--NOTES-->
+<div id="cloud-notes"></div>
+</section></main>
+<footer><div class="container footer-inner"><div>© 2026 进击的小超超 · 学习主页</div><div><a href="index.html">返回主页</a>&nbsp;·&nbsp;<span>更新于 2026-11-24</span></div></div></footer>
+<script>
+const API='https://notes-api.zcc530885.workers.dev/notes';
+function esc(s){return(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function fmtTime(iso){try{const d=new Date(iso);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}catch(e){return ''}}
+async function loadNotes(){const box=document.getElementById('cloud-notes');try{const res=await fetch(API);const data=await res.json();const list=data.notes||[];if(!list.length){box.innerHTML='<p class="cloud-empty">还没有补充笔记，点上面「添加一条新笔记」写第一条。</p>';return}box.innerHTML=list.map(function(n){const tag=n.lesson?esc(n.lesson):'新增';const title=esc(n.title||'未命名');const body=esc(n.content||'').replace(/\n/g,'<br>');const when=fmtTime(n.createdAt);return '<details class="note-card" id="c'+esc(n.id)+'"><summary class="note-summary"><span class="lesson-tag">'+tag+'</span><h3>'+title+'</h3><span class="arrow" aria-hidden="true"></span></summary><div class="note-block"><div class="ex"><span>'+body+'</span></div><div class="cloud-meta">'+when+'</div></div></details>'}).join('')}catch(e){box.innerHTML='<p class="cloud-empty">云端笔记暂时加载不到，稍后刷新再试。</p>'}}
+document.getElementById('f-submit').addEventListener('click',async function(){const lesson=document.getElementById('f-lesson').value.trim();const title=document.getElementById('f-title').value.trim();const content=document.getElementById('f-content').value.trim();const token=document.getElementById('f-token').value.trim();const msg=document.getElementById('f-msg');const btn=document.getElementById('f-submit');if(!title&&!content){msg.className='form-msg err';msg.textContent='标题和正文不能都为空。';return}if(!token){msg.className='form-msg err';msg.textContent='请填写写入口令。';return}btn.disabled=true;msg.className='form-msg';msg.textContent='保存中…';try{const res=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify({lesson:lesson,title:title,content:content})});const data=await res.json();if(!res.ok)throw new Error(data.error||'保存失败');msg.className='form-msg ok';msg.textContent='已发布！';document.getElementById('f-lesson').value='';document.getElementById('f-title').value='';document.getElementById('f-content').value='';document.getElementById('f-token').value='';await loadNotes()}catch(err){msg.className='form-msg err';msg.textContent='保存失败：'+err.message}finally{btn.disabled=false}});
+loadNotes();
+</script>
+</body>
+</html>
