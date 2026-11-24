@@ -243,6 +243,88 @@
             color: var(--accent);
         }
 
+        /* ===== 云端笔记与添加表单 ===== */
+        .cloud-empty {
+            color: var(--muted);
+            font-size: 14px;
+            padding: 8px 2px;
+        }
+        .cloud-meta {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 6px;
+        }
+        .add-card {
+            background: var(--surface);
+            border: 1px dashed var(--line);
+            border-radius: var(--radius);
+            margin-bottom: 16px;
+        }
+        .add-card .note-summary {
+            cursor: pointer;
+        }
+        .add-form {
+            padding: 0 24px 20px;
+            display: grid;
+            gap: 12px;
+        }
+        .add-form label {
+            font-size: 13px;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .add-form input[type="text"],
+        .add-form input[type="password"],
+        .add-form textarea {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            font: inherit;
+            color: var(--ink);
+            background: #fff;
+        }
+        .add-form textarea {
+            min-height: 90px;
+            resize: vertical;
+            line-height: 1.7;
+        }
+        .add-form .row2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        @media (max-width: 520px) {
+            .add-form .row2 {
+                grid-template-columns: 1fr;
+            }
+        }
+        .add-form button {
+            justify-self: start;
+            padding: 9px 20px;
+            border: 0;
+            border-radius: 10px;
+            background: var(--accent);
+            color: #fff;
+            font: inherit;
+            cursor: pointer;
+        }
+        .add-form button:disabled {
+            opacity: 0.6;
+            cursor: default;
+        }
+        .form-msg {
+            font-size: 13px;
+            min-height: 18px;
+        }
+        .form-msg.ok {
+            color: var(--accent);
+        }
+        .form-msg.err {
+            color: #a23b3b;
+        }
+
         /* ===== 页脚 ===== */
         footer {
             border-top: 1px solid var(--line);
@@ -309,6 +391,20 @@
                 <a href="#l49">Lesson 49</a>
                 <a href="#lsum">句型总结</a>
             </div>
+
+            <details class="note-card add-card" id="add-note">
+                <summary class="note-summary"><span class="lesson-tag" style="color:var(--amber);background:var(--amber-soft)">＋</span><h3>添加一条新笔记</h3><span class="arrow" aria-hidden="true"></span></summary>
+                <div class="add-form">
+                    <div class="row2">
+                        <div><label for="f-lesson">课次（可选，如 Lesson 52）</label><input type="text" id="f-lesson" placeholder="Lesson 52"></div>
+                        <div><label for="f-title">标题</label><input type="text" id="f-title" placeholder="如：现在进行时例句"></div>
+                    </div>
+                    <div><label for="f-content">正文（一行一条，换行可保留）</label><textarea id="f-content" placeholder="单词 / 短语 / 例句，逐条写"></textarea></div>
+                    <div><label for="f-token">写入口令</label><input type="password" id="f-token" placeholder="你设置的写入口令"></div>
+                    <button type="button" id="f-submit">保存并发布</button>
+                    <div class="form-msg" id="f-msg"></div>
+                </div>
+            </details>
 
 <details class="note-card" id="l14">
                 <summary class="note-summary"><span class="lesson-tag">Lesson 14</span><h3>请客与 AA 制</h3><span class="arrow" aria-hidden="true"></span></summary>
@@ -906,6 +1002,8 @@
                     </div>
                 </div>
             </details>
+
+            <div id="cloud-notes"></div>
         </section>
     </main>
 
@@ -919,6 +1017,94 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        const API = 'https://notes-api.zcc530885.workers.dev/notes';
+
+        function esc(s) {
+            return (s || '').replace(/[&<>"']/g, function (c) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+            });
+        }
+        function fmtTime(iso) {
+            try {
+                const d = new Date(iso);
+                return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+            } catch (e) {
+                return '';
+            }
+        }
+
+        async function loadNotes() {
+            const box = document.getElementById('cloud-notes');
+            try {
+                const res = await fetch(API);
+                const data = await res.json();
+                const list = data.notes || [];
+                if (!list.length) {
+                    box.innerHTML = '<p class="cloud-empty">还没有补充笔记，点上面「添加一条新笔记」写第一条。</p>';
+                    return;
+                }
+                box.innerHTML = list.map(function (n) {
+                    const tag = n.lesson ? esc(n.lesson) : '新增';
+                    const title = esc(n.title || '未命名');
+                    const body = esc(n.content || '').replace(/\n/g, '<br>');
+                    const when = fmtTime(n.createdAt);
+                    return '<details class="note-card" id="c' + esc(n.id) + '">'
+                        + '<summary class="note-summary"><span class="lesson-tag">' + tag + '</span><h3>' + title + '</h3><span class="arrow" aria-hidden="true"></span></summary>'
+                        + '<div class="note-block"><div class="ex"><span>' + body + '</span></div>'
+                        + '<div class="cloud-meta">' + when + '</div></div></details>';
+                }).join('');
+            } catch (e) {
+                box.innerHTML = '<p class="cloud-empty">云端笔记暂时加载不到，稍后刷新再试。</p>';
+            }
+        }
+
+        document.getElementById('f-submit').addEventListener('click', async function () {
+            const lesson = document.getElementById('f-lesson').value.trim();
+            const title = document.getElementById('f-title').value.trim();
+            const content = document.getElementById('f-content').value.trim();
+            const token = document.getElementById('f-token').value.trim();
+            const msg = document.getElementById('f-msg');
+            const btn = document.getElementById('f-submit');
+            if (!title && !content) {
+                msg.className = 'form-msg err';
+                msg.textContent = '标题和正文不能都为空。';
+                return;
+            }
+            if (!token) {
+                msg.className = 'form-msg err';
+                msg.textContent = '请填写写入口令。';
+                return;
+            }
+            btn.disabled = true;
+            msg.className = 'form-msg';
+            msg.textContent = '保存中…';
+            try {
+                const res = await fetch(API, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+                    body: JSON.stringify({ lesson: lesson, title: title, content: content })
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || '保存失败');
+                msg.className = 'form-msg ok';
+                msg.textContent = '已发布！';
+                document.getElementById('f-lesson').value = '';
+                document.getElementById('f-title').value = '';
+                document.getElementById('f-content').value = '';
+                document.getElementById('f-token').value = '';
+                await loadNotes();
+            } catch (err) {
+                msg.className = 'form-msg err';
+                msg.textContent = '保存失败：' + err.message;
+            } finally {
+                btn.disabled = false;
+            }
+        });
+
+        loadNotes();
+    </script>
 
 </body>
 </html>
